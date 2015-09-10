@@ -13,13 +13,13 @@ module.exports = {
 
 		
 		var params = req.params.all();
-		delete(params.id);
+	//	delete(params.id);
 		
 		User.create(req.params.all(),function userCreated(err,user){  
 
 			if(err){ 
 			console.log(err);
-				
+		    	return next(err);		
 				
 
 			}
