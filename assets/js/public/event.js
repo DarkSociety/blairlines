@@ -77,7 +77,8 @@ eventAfterRender: function (event, element, view)
 						console.log("+");
 						console.log(data.status);
 						console.log("+");
-						if(data.status=="Canceled"){ element.css('background-color', '#e4e4e4'); console.log('Canc'); return; }
+						if(data.status=="Cancelled"){ element.css('background-color', '#727272'); console.log('Canc');  
+						  return; }
 					
 						else {
 
@@ -89,6 +90,7 @@ eventAfterRender: function (event, element, view)
 										success: function(data){}								
 										});
 							}else if (event.start < NewDate && event.end < NewDate) {
+								
 								element.css('background-color', '#7777dd');//Past or Completed 
 								$.ajax({
 											url: "event/update/"+event.id+"?status=Completed",
@@ -96,6 +98,7 @@ eventAfterRender: function (event, element, view)
 											success: function(data){}								
 											});
 							}else if (event.start > NewDate && event.end > NewDate) {
+															
 								element.css('background-color', '#dd77dd');//Future or not Started 
 								$.ajax({
 											url: "event/update/"+event.id+"?status=Not Started",
@@ -109,9 +112,9 @@ eventAfterRender: function (event, element, view)
 		
 },
 			    eventClick: function(event) {
-
+				
+				
 			    	$(".join-event-button, .event-cart, .already-applied-event, .signup-before, .event-cancel").hide();
-
 			    	$(".event-card").show();
 			    	$.ajax({
 			    		url: "event/"+event.id,
@@ -144,7 +147,7 @@ eventAfterRender: function (event, element, view)
 			    				if(alreadyAppliedEvent){ $(".already-applied-event").show(); }
 							//Validation Future events for booking
 							if(event.start > dateNow && event.end > dateNow){
-							if(userObject.user.userType==1 && !alreadyAppliedEvent){
+							if(userObject.user.userType==1 && !alreadyAppliedEvent && data.status!="Cancelled"){
 								$(".join-event-button").show();}
 							}
 
@@ -154,8 +157,8 @@ eventAfterRender: function (event, element, view)
 
 			    					if(data.pilots[i].user == userObject.user.id){ currentPilotEvent = true; }
 			    				}
-
-			    				if(currentPilotEvent){ $(".event-cancel").show();  }
+							
+			    				if(currentPilotEvent && data.status!="Cancelled"){ $(".event-cancel").show();  }
 
 			    			} else if(userObject.user.userType==3) {
 			    				
@@ -167,7 +170,9 @@ eventAfterRender: function (event, element, view)
 			    					if(data.clubs[i].user == userObject.user.id){ currentClubEvent = true; }
 			    				}
 
-			    				if(currentClubEvent){ $(".event-cancel").show();  }
+							if(event.start > dateNow && event.end > dateNow){
+								if(currentClubEvent && data.status!="Cancelled"){ $(".event-cancel").show();  }
+							}
 
 			    			} else {
 							if(event.start > dateNow && event.end > dateNow){
@@ -178,7 +183,8 @@ eventAfterRender: function (event, element, view)
 			    		}
 			    		
 			    	});
-				    
+				 
+  
 				  //   if (event.title) {
 				  //       alert("ID: " + event.id + "\r\n" + "Event: " + event.title + "\r\n" + "Date: " + event.start + " - " + event.end);
 					 // $(this).css('border-color', 'red');
@@ -327,7 +333,7 @@ $(document).ready(function(){
 	$(".event-cancel-button").on("click",function(){
 		var eventId = $(this).attr("data-event-id");
 		$.ajax({
-			url: "event/update/"+eventId+"?status=Сanceled",
+			url: "event/update/"+eventId+"?status=Cancelled",
 			dataType: "JSON",
 			success: function(data){
 				alert('Your event was sucessfully canceled!');

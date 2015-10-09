@@ -91,7 +91,7 @@
             <div class="form-group">
 
            <i class="fa fa-user"></i>
-                <input type="text" class="form-control" placeholder="email"  name="email"/>
+                <input type="text" id="email" class="form-control" placeholder="email"  name="email"/>
             </div>
        &nbsp;
             <div class="form-group">
@@ -318,7 +318,9 @@
        <!-- Passenger Profile -->
 
             <div class="container passenger-profile" style="width: 400px; display: none; background: white; opacity: 0.87; padding: 30px;">
-
+		<div class="passenger-close" style="position: absolute; z-index: 1; cursor: pointer; right: 485px; top: 0px; margin-top: 239px;">
+                    <span class="glyphicon glyphicon-remove-circle" style="font-size: 20px;"></span>
+              </div>
               <h4 class="modal-title" id="myModalLabel">Profile Information</h4>
             
                 
@@ -516,7 +518,8 @@
     <section id="events" class="events">
 <div class="col-lg-10 col-lg-offset-1 text-center">
   <h2>Events</h2>
-  <i class="fa fa-file-text fa-1x" style="color: #7777dd; left: 10px;"> -Past or Completed</i>
+	  <i class="fa fa-file-text fa-1x" style="color: #727272; left: 10px;"> -Cancelled</i>
+  &nbsp;&nbsp;<i class="fa fa-file-text fa-1x" style="color: #7777dd; left: 10px;"> -Past or Completed</i>
   &nbsp;&nbsp;<i class="fa fa-file-text fa-1x" style="color: #77dd77"> -Present or In progress</i>
   &nbsp;&nbsp;<i class="fa fa-file-text fa-1x" style="color: #dd77dd"> -Future or Not Started</i>
        <hr class="small"> 
@@ -551,7 +554,7 @@
                     <hr>
                     <button type="submit" class="btn btn-default confirm-event-button" data-event-id="">Pay Checkout!</button>
 			
-			<!--Insert-->
+			
 	<!-- Payment
 	
               <div class="credit-card-div" style="width: 350px; margin-top: 36px; margin-left: -22px;">
@@ -607,11 +610,9 @@
                    </div>
               </div>
               </div>
-              <!-- CREDIT CARD DIV END -->
-       
-    <!-- Payment END -->
+             
 -->
-			<!--Insert End-->
+			
                 </div>
                 <div class="col-lg-6 already-applied-event" style="display: none;">
                     <h3 class="text-muted">Event</h3>
@@ -664,8 +665,9 @@
                             </div>
                         </div>
                     </div>
-                    <!-- /.row (nested) -->
+                    <!-- /.row (nested) 
                     <a href="#" class="btn btn-dark">View More Items</a>
+			-->
                 </div>
                 <!-- /.col-lg-10 -->
             </div>

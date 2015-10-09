@@ -51,6 +51,13 @@ $(document).ready(function(){
 		$(".get-started").show();
 	});
 
+	$(".passenger-close").on("click",function(){
+		
+		$(".passenger-profile").hide();
+		$(".get-started").show();
+	});
+
+
 	$(".signup-form").submit(function(e){
 
 		e.preventDefault();
@@ -170,9 +177,14 @@ $(document).ready(function(){
 				} else{
 					console.log(data)
 
-
-
 					$(".profile-form").html("<h2>Your registration complete!<h2><p>Try login now.</p>");
+					document.getElementById("email").focus(); 
+					setTimeout(function(){
+					//$(".profile-form").html("<h2>Your registration complete!<h2><p>Try login now.</p>").hide(); 
+					$(".passenger-profile").hide();
+					$(".get-started").show();
+					},2000);
+
 					
 				}
 
